@@ -12,5 +12,10 @@ def on_event(event):
     risk = compute_risk(elder_state)
     elder_state.risk_score = risk
 
+    print(f"[DEBUG] Computed risk = {risk}")
+
     if should_alert(risk):
+        print("[DEBUG] Risk above threshold → sending alert")
         send_alert(event.elder_id, risk)
+    else:
+        print("[DEBUG] Risk below threshold → no alert")
